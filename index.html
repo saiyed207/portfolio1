@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="saiyed afak, portfolio, saiyed, full stack dev, personal portfolio lifecodes, portfolio design, portfolio website, personal portfolio" />
+    <meta name="description" content="Welcome to Saiyed Afak's Portfolio. Full-Stack Web Developer" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link id='favicon' rel="shortcut icon" href="./assets/images/afak.png" type="image/x-png">
+    
+    <title>Portfolio | Saiyed Afak Ahmed</title>
+    
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            outline: none;
+            border: none;
+            text-transform: capitalize;
+            transition: all .2s linear;
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #e5ecfb;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        *::selection {
+            background: #2b3dda;
+            color: #fff;
+        }
+
+        html::-webkit-scrollbar {
+            width: .8rem;
+        }
+        html::-webkit-scrollbar-track {
+            background: rgb(235, 202, 245);
+        }
+        html::-webkit-scrollbar-thumb {
+            background: #420177;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.7rem 10%;
+            height: 6.5rem;
+            background-color: transparent;
+            box-shadow: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        header.sticky {
+            background-color: rgb(0, 72, 255);
+            box-shadow: 0 1px 4px rgba(146,161,176,.3);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 2rem 9%;
+        }
+
+        .heading {
+            font-size: 3.5rem;
+            color: rgb(32, 32, 32);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .heading span {
+            color: rgb(115, 3, 167);
+        }
+
+        header .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        header .logo i { font-size: 2.2rem; }
+        header .logo:hover { color: #fc8c05; }
+        
+        header .navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header .navbar li { margin-left: 2.5rem; }
+        header .navbar ul li a {
+            font-size: 1.57rem;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 0.04rem;
+        }
+        header .navbar ul li a.active,
+        header .navbar ul li a:hover {
+            color: #e7e715;
+            border-bottom: .2rem solid #e2e20a;
+            padding: .5rem 0;
+        }
+
+        #menu {
+            font-size: 3rem;
+            cursor: pointer;
+            color: #fff;
+            display: none;
+        }
+
+        /* ================================================== */
+        /* Hero Scroll Animation Section                      */
+        /* ================================================== */
+        .hero-scroll-section {
+            position: relative;
+            height: 500vh;
+            padding: 0;
+            background: #000;
+        }
+        
+        .canvas-container {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+
+        .hero-overlay .content {
+            z-index: 10;
+            pointer-events: auto;
+            flex: 1 1 40rem;
+            position: relative; /* Added for edit buttons */
+        }
+
+        .hero-overlay .content h2 {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        
+        .hero-overlay .content h2 span {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #ff7b00;
+        }
+        
+        .hero-overlay .content p {
+            font-size: 2.5rem;
+            color: #ddd;
+            font-weight: 600;
+            padding: 1rem 0;
+        }
+        
+        .hero-overlay .content p span {
+            font-size: 2.5rem;
+            color: #ff7b00;
+        }
+
+        .hero-overlay .btn, .resumebtn .btn, .morebtn .btn, .backbtn .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1.6rem 3rem;
+            border-radius: 4em;
+            transition: 0.5s;
+            color: #fff;
+            background: #2506ad;
+            box-shadow: 0px 5px 18px rgba(48, 68, 247, 0.6);
+            font-family: "Nunito", sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+        .hero-overlay .btn:hover, .resumebtn .btn:hover, .morebtn .btn:hover, .backbtn .btn:hover { background: #1a047e; }
+
+        .socials { position: relative; margin-top: 9rem; }
+        .socials .social-icons { padding-left: 0; margin-bottom: 0; list-style: none; }
+        .socials .social-icons li { display: inline-block; margin-bottom: 14px; }
+        .social-icons a {
+            font-size: 2rem;
+            display: inline-block;
+            line-height: 44px;
+            color: #00d9ff;
+            background-color: rgba(9, 1, 27, 0.8);
+            width: 44px; height: 44px;
+            text-align: center;
+            margin-right: 8px;
+            border-radius: 100%;
+            transition: all 0.2s linear;
+        }
+        .social-icons a:hover { color: #fff; background-color: #0685da; }
+
+        /* ================================================== */
+        /* ADMIN CONTROLS CSS (EDIT, DELETE, ADD)             */
+        /* ================================================== */
+        .admin-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+            z-index: 50;
+        }
+        .btn-edit, .btn-delete {
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .btn-edit { background: #3498db; }
+        .btn-delete { background: #e74c3c; }
+        .btn-edit:hover { background: #2980b9; }
+        .btn-delete:hover { background: #c0392b; }
+
+        .btn-add {
+            display: block;
+            margin: 0 auto 2rem auto;
+            padding: 10px 20px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-add:hover { background: #27ae60; }
+        .btn-add i { margin-right: 8px; }
+
+        .download-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            padding: 1.5rem 2rem;
+            background: #e74c3c;
+            color: #fff;
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: none;
+            transition: 0.3s;
+        }
+        .download-btn:hover { background: #c0392b; transform: translateY(-3px); }
+
+        /* Ensure parent containers can hold absolute positioned buttons */
+        .about .row .content, 
+        .education .box-container .box .content,
+        .experience .content,
+        .work .box-container .box,
+        .our-skills .skill,
+        .container1 .block,
+        .footer .box {
+            position: relative;
+        }
+
+        .our-skills .skill .admin-actions { top: -8px; right: 0; }
+        .container1 .block .admin-actions { top: 0px; right: -25px; }
+
+        /* Editable fields highlight */
+        [contenteditable="true"] {
+            border: 2px dashed #3498db;
+            padding: 2px 4px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border-radius: 3px;
+        }
+        
+        /* Indicators for interactive edit elements */
+        .is-editing img { cursor: pointer; border: 3px dashed #e74c3c; opacity: 0.8; }
+        .is-editing img:hover { opacity: 0.5; }
+        .is-editing a { border: 2px dashed #e74c3c; position: relative; z-index: 100; cursor: pointer !important; }
+        .is-editing .progress-line, .is-editing .box1, .is-editing .typing-text { cursor: pointer; border: 2px dashed #e74c3c; }
+        .is-editing .typing-text::after { content: ' (Click to edit text)'; font-size: 1rem; color: #fff; background: red; padding: 2px; }
+
+        /* ================================================== */
+
+        /* About Section */
+        .about { background: rgb(255, 255, 255); }
+        .about .row { display: flex; flex-direction: row; gap: 2rem; flex-wrap: wrap; padding: 4rem; }
+        .about .row .image { text-align: center; flex: 1 1 35rem; position: relative;}
+        .about .row .image img {
+            margin: 4rem; width: 30rem; border-radius: 5%;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6); cursor: pointer;
+        }
+        .about .row .content { flex: 1 1 45rem; padding: 3rem; }
+        .about .row .content h3 { font-size: 2.5rem; color: rgb(27, 27, 27); }
+        .about .row .content .tag { font-size: 1.4rem; color: #020133; font-weight: 600; margin-top: 1rem; display: inline-block;}
+        .about .row .content p { font-size: 1.5rem; margin-top: 1.5rem; font-family: "Nunito"; font-weight: 600; text-transform: none; }
+        .about .row .content .box-container { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
+        .about .row .content .box-container .box p span { color: #011aff; }
+        
+        .popup {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); justify-content: center; align-items: center; z-index:9999;
+        }
+        .popup-content { position: relative; background: #fff; padding: 20px; border-radius: 10px; z-index:10000; text-align:center; max-height: 90vh; overflow-y: auto; width: 80%;}
+        .popup-content img { max-width: 100%; height: auto; }
+        .popup-content button { background-color: #3498db; color: #fff; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-size:1.5rem; }
+
+        /* Skills Section */
+        .skills { min-height: 90vh; background: #fff; }
+        .skills-content { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;}
+        
+        .our-skills { padding: 15px; width: 500px; border-radius: 10px; }
+        .our-skills .skill { margin: 40px 10px; }
+        .skill p { margin-bottom: 10px; color: #000; font-size: 22px; font-weight: bold;}
+        .skill .progress-line { position: relative; width: 100%; height: 8px; background: #ddd; border-radius: 8px; }
+        .skill .progress-line span {
+            position: absolute; display: block; height: 100%; background: var(--bg);
+            border-radius: 8px; width: var(--wd);
+        }
+
+        .container1 { margin-top: 5%; display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;}
+        .block { position: relative; display: flex; align-items: center; justify-content: center; width: 180px; height: 180px; border-radius: 50%; }
+        .box1 {
+            position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column;
+            width: calc(100% - 50px); height: calc(100% - 50px); border-radius: 50%; background-color: #fff; box-shadow: 0 0 5px 3px #dfdf0a; z-index: 5;
+        }
+        .box1 .number span { color: #000; }
+        .box1 .number .num { font-size: 35px; font-weight: bold; }
+        .box1 .number .sub { font-size: 20px; }
+        .box1 .title { font-size: 15px; color: #555; display: inline-block;}
+        .svg { position: absolute; width: 100%; height: 100%; fill: none; transform: rotate(-90deg); z-index: 1;}
+        .circle {
+            stroke: #ff981a; stroke-width: 8px; stroke-dasharray: 503;
+            stroke-dashoffset: 503; transition: 2s stroke-dashoffset;
+        }
+
+        /* Education */
+        .education { background: #e5ecfb; min-height: 80vh; }
+        .education .qoute { font-size: 1.5rem; text-align: center; font-family: "Nunito", sans-serif; font-weight: 600; margin-top: 0.5rem; margin-bottom: 2rem;}
+        .education .box-container { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; flex-direction: column; gap: 2rem;}
+        .education .box-container .box {
+            display: flex; flex-direction: row; width: 80%; border-radius: 0.5rem;
+            box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.2); background: rgb(252, 252, 252); overflow: hidden; width: 100%; max-width: 900px;
+        }
+        .education .box-container .box img { width: 100%; height: 100%; object-fit: cover; }
+        .education .box-container .box .image { flex: 1 1 20rem; }
+        .education .box-container .box .content { flex: 1 1 70rem; padding: 2rem; }
+        .education .box-container .box .content h3 { font-size: 2.5rem; color: #012970; }
+        .education .box-container .box .content p { font-size: 1.5rem; margin-top: 1rem;}
+        .education h4 { font-size: 2rem; color: rgb(34, 109, 0); margin-top: 1rem; }
+
+        /* Experience Section */
+        .experience { margin-top: 5rem; background: #fff;}
+        .experience .timeline { position: relative; max-width: 1200px; margin: 2rem auto; }
+        .experience .timeline::after {
+            content: ''; position: absolute; width: 6px; background: #020133;
+            top: 0; bottom: 0; left: 50%; margin-left: -3px;
+        }
+        .experience .container { padding: 10px 40px; position: relative; width: 50%; }
+        .experience .container::after {
+            content: "\f0b1"; position: absolute; width: 25px; height: 25px; right: -17px;
+            background-color: #fff; border: 4px solid #f68c09; top: 15px; border-radius: 50%; z-index: 10;
+            font-size: 1.89rem; text-align: center; color: #02094b; font-family: 'Font Awesome 5 Free'; font-weight: 900;
+        }
+        .experience .left { left: 0; }
+        .experience .right { left: 50%; }
+        .experience .right::after { left: -16px; }
+        .experience .content { background-color: #f68c09; position: relative; border-radius: 6px; padding: 2rem; }
+        .experience .content h2 { font-size: 2rem; color: #fff;}
+        .experience .content h3 { font-size: 1.5rem; margin-top: 1rem;}
+        .experience .content p { font-size: 1.2rem; color: #000;}
+
+        /* Work / Projects Section */
+        .work { background: linear-gradient(to bottom, #010136, #00003a); }
+        .work .heading { color: #fff; }
+        .work .button-group { display: flex; flex-wrap: wrap; gap:1rem; margin: 2rem auto; justify-content: center; }
+        .work .button-group .btn {
+            outline: none; padding: 1rem 2rem; background: transparent; color: #fff;
+            border: 1px solid #fff; border-radius: 3px; cursor: pointer; font-size: 1.5rem;
+        }
+        .work .button-group .btn:hover, .work .button-group .btn.is-checked { background: #fff; color: #000; }
+        
+        .work .box-container { display: flex; flex-wrap: wrap; margin: 2rem auto; max-width: 1200px; justify-content: center;}
+        
+        /* EXACT 3-COLUMN LAYOUT SETTINGS */
+        .work .box-container .grid-item { 
+            width: calc(33.333% - 2rem); 
+            margin: 1rem; 
+        }
+
+        .work .box-container .box {
+            border-radius: .5rem; box-shadow: 0 .7rem 1rem rgba(0,0,0,.3);
+            position: relative; overflow:hidden; height:30rem; background: #fff; width: 100%;
+        }
+        .work .box-container .box img { 
+            height: 100%; 
+            width: 100%; 
+            object-fit: contain;
+            background: #fff; 
+        }
+        .work .box-container .box .content {
+            height: 100%; width:100%; position: absolute; top:85%; left:0;
+            background:rgba(255, 255, 255, 0.9); display: flex; flex-direction: column; transition: 0.3s;
+        }
+        .work .box-container .box:hover .content { top: 25%; }
+        .work .box-container .box .content .tag { background: #ffd900; padding: 1rem; }
+        .work .box-container .box .content .tag h3 { font-size: 2rem; color: #000;}
+        .work .desc { margin: 2rem; }
+        .work .desc p { font-size: 1.5rem; color: #000; margin-bottom: 2rem;}
+        .work .desc .btns .btn {
+            padding: 1rem 2rem; border-radius: .5rem; font-size: 1.5rem;
+            color: #fff; background: #000; display: inline-block;
+        }
+        .work .desc .btns .btn:hover { background: #310ae0; }
+
+        /* Contact Section */
+        .contact { background: #e5ecfb; min-height: 60vh; }
+        .contact .container { max-width: 1050px; width: 100%; background: #fff; border-radius: 1.5rem; margin: 2rem auto; box-shadow: 0 5px 10px rgba(0,0,0,0.15); display: flex; overflow: hidden; position: relative;}
+        .contact .image-box { flex: 1; padding: 2rem;}
+        .contact .image-box img { width: 100%; height: auto; }
+        .contact form { flex: 1; padding: 4rem; display: flex; flex-direction: column; gap: 1.5rem; justify-content: center;}
+        .contact form .field { position: relative; }
+        .contact form .field i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #555;}
+        .contact form input, .contact form textarea {
+            width: 100%; padding: 1.5rem 1.5rem 1.5rem 4.5rem; font-size: 1.5rem;
+            border: 1px solid #ccc; border-radius: .5rem; background: #f9f9f9;
+        }
+        .contact form textarea { min-height: 150px; resize: none; padding-left: 1.5rem;}
+        .contact form button {
+            padding: 1.5rem 3rem; font-size: 1.8rem; background: #2506ad; color: #fff;
+            border-radius: .5rem; cursor: pointer; transition: 0.3s;
+        }
+        .contact form button:hover { background: #1a047e; }
+
+        /* Footer Section */
+        .footer { background: rgb(0, 1, 43); padding-top: 3rem; position: relative;}
+        .footer .box-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem; padding: 2rem; }
+        .footer .box-container .box { flex: 1 1 25rem; }
+        .footer .box-container .box h3 { font-size: 2.5rem; color: #fff; margin-bottom: 1rem; display: inline-block;}
+        .footer .box-container .box p, .footer .box-container .box a { font-size: 1.5rem; color: #ccc; display: block; margin-bottom: 1rem; }
+        .footer .box-container .box p i { color: #ffae00; margin-right: 1rem; }
+        .footer .box-container .box a:hover { color: #ffae00; }
+        .footer .share a {
+            display: inline-block; height: 4.5rem; width: 4.5rem; background: #fff;
+            color: #02094b; text-align: center; line-height: 4.5rem; font-size: 2rem; border-radius: 50%; margin-right: 1rem;
+        }
+        .footer .share a:hover { background: #ffae00; color: #fff; }
+        .footer .credit { text-align: center; padding: 2rem; font-size: 1.5rem; color: #fff; border-top: 1px solid rgba(255,255,255,0.2); }
+        .footer .credit a { color: #ffae00; }
+
+        /* Scroll Top */
+        #scroll-top {
+            position: fixed; top: -140%; right: 2rem; padding: 1.5rem; font-size: 2rem;
+            background: #ffae00; color: #000; border-radius: 50%; transition: 1s linear; z-index: 1000; cursor: pointer;
+        }
+        #scroll-top.active { top: calc(100% - 8rem); }
+
+        /* Media Queries */
+        @media(max-width: 991px) {
+            .work .box-container .grid-item { width: calc(50% - 2rem); }
+        }
+        @media(max-width: 768px) {
+            #menu { display: block; }
+            header .navbar {
+                position: fixed; top: 6.5rem; right: -120%; width: 75%; height: 100vh;
+                background: #0e0f31; flex-direction: column; align-items: center; justify-content: flex-start; transition: 0.3s;
+            }
+            header .navbar ul { flex-direction: column; width: 100%; }
+            header .navbar ul li { width: 100%; text-align: center; margin: 1.5rem 0; }
+            header .navbar.nav-toggle { right: 0; }
+            
+            .experience .timeline::after { left: 31px; }
+            .experience .container { width: 100%; padding-left: 80px; }
+            .experience .right { left: 0; }
+            .experience .container::after { left: 15px; }
+            
+            .contact .container { flex-direction: column; }
+            .contact .image-box { display: none; }
+            .work .box-container .grid-item { width: calc(100% - 2rem); }
+        }
+        @media(max-width: 450px) {
+            html { font-size: 55%; }
+            .hero-overlay .content h2 { font-size: 3.8rem; }
+            .hero-overlay .content h2 span { font-size: 3.8rem; }
+            .hero-overlay .content p, .hero-overlay .content p span { font-size: 2.2rem; }
+            .socials { margin-top: 5rem; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+
+    <!-- Header Section -->
+    <header>
+        <a href="#home" class="logo"><i class="fab fa-node-js"></i> Saiyed</a>
+        <div id="menu" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Scroll Animation Section -->
+    <section class="hero-scroll-section" id="home">
+        <div class="canvas-container">
+            <canvas id="animationCanvas"></canvas>
+            <div class="hero-overlay">
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit Hero Section"><i class="fas fa-edit"></i></button>
+                    </div>
+                    <h2>Hi There,<br/> I'm Saiyed<span> Afak</span> Ahmed</h2>
+                    <p>I am into <span class="typing-text" data-strings="Frontend Development,Backend Development,Web Designing,Android Development,Web Development"></span></p>
+                    <a href="#about" class="btn"><span>About Me</span> <i class="fas fa-arrow-circle-down"></i></a>
+                    <div class="socials">
+                        <ul class="social-icons">
+                            <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/saiyed-afak-ahmed-256a5a256/" target="_blank"><i class="fab fa-linkedin"></i></a></li> 
+                            <li><a class="github" aria-label="GitHub" href="https://github.com/saiyed207" target="_blank"><i class="fab fa-github"></i></a></li>
+                            <li><a class="instagram" aria-label="Instagram" href="https://www.instagram.com/_saiyed_khan_/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="heading"><i class="fas fa-user-alt"></i> About <span>Me</span></h2>
+        
+        <div class="row">
+            <div class="image">
+                <div class="admin-actions">
+                    <button class="btn-edit" title="Edit Image"><i class="fas fa-edit"></i></button>
+                </div>
+                <img draggable="false" class="tilt" src="./assets/images/afak.png" alt="Saiyed Afak">
+            </div>
+            <div class="content">
+                <div class="admin-actions">
+                    <button class="btn-edit" title="Edit About"><i class="fas fa-edit"></i></button>
+                </div>
+
+                <h3>I'm Saiyed Afak</h3>
+                <span class="tag">Full Stack Developer</span>
+                <p>I am a Full-Stack developer. I have currently completed my training from Tap Academy. I am very passionate about improving my coding skills & developing applications & websites. For me Web development is not just a job, its my passion.</p>
+                
+                <div class="box-container" id="about-details">
+                    <div class="box">
+                        <div class="admin-actions">
+                            <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <p><span> email : </span> saiyedkhan207@gmail.com</p>
+                        <p><span> place : </span> Bijapur, India - 586101</p>
+                    </div>
+                </div>
+                
+                <button class="btn-add" style="margin-top:20px; margin-left:0;"><i class="fas fa-plus"></i> Add Info Box</button>
+
+                <div class="resumebtn">
+                    <button class="btn" id="resumeBtn">
+                        <span>Resume</span> <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Popups for About Section -->
+        <div class="popup" id="resumePopup">
+            <div class="popup-content">
+                <div class="admin-actions" style="top: 0; right: 0;">
+                    <button class="btn-edit" title="Edit Image"><i class="fas fa-edit"></i></button>
+                </div>
+                <img src="./assets/images/resume.png" alt="Resume">
+                <br>
+                <button id="closeBtn">Close</button>
+            </div>
+        </div>
+        <div class="popup" id="transcriptPopup">
+            <div class="popup-content">
+                <div class="admin-actions" style="top: 0; right: 0;">
+                    <button class="btn-edit" title="Change PDF Link"><i class="fas fa-edit"></i></button>
+                </div>
+                <embed src="./assets/images/transcript1.pdf" type="application/pdf" width="100%" height="600px"></embed>
+                <button id="closeBtn1">Close</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="heading"><i class="fas fa-laptop-code"></i> Skills & <span>Abilities</span></h2>
+        
+        <button class="btn-add"><i class="fas fa-plus"></i> Add Skill</button>
+
+        <div class="skills-content">
+            <div class="our-skills">
+                <div class="skill">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <p>Java</p>
+                    <div class="progress-line" style="--bg: #ff981a; --wd: 90%;"><span></span></div>
+                </div>
+                <div class="skill">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <p>HTML+CSS+Bootstrap</p>
+                    <div class="progress-line" style="--bg: #3bd8ff; --wd: 95%;"><span></span></div>
+                </div>
+                <div class="skill">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <p>Javascript</p>
+                    <div class="progress-line" style="--bg: #fff458; --wd: 80%;"><span></span></div>
+                </div>
+            </div>
+            
+            <div class="container1">
+                <div class="block">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="box1">
+                        <p class="number"><span class="num">90</span><span class="sub">%</span></p>
+                        <p class="title">Java</p>
+                    </div>
+                    <svg class="svg"><circle class="circle" cx="90" cy="90" r="80" style="stroke:#ff981a;"/></svg>
+                </div>
+                <div class="block">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="box1">
+                        <p class="number"><span class="num">95</span><span class="sub">%</span></p>
+                        <p class="title">Frontend</p>
+                    </div>
+                    <svg class="svg"><circle class="circle" cx="90" cy="90" r="80" style="stroke:#3bd8ff;"/></svg>
+                </div>
+                <div class="block">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="box1">
+                        <p class="number"><span class="num">80</span><span class="sub">%</span></p>
+                        <p class="title">Javascript</p>
+                    </div>
+                    <svg class="svg"><circle class="circle" cx="90" cy="90" r="80" style="stroke:#fff458;"/></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <h2 class="heading"><i class="fas fa-graduation-cap"></i> My <span>Education</span></h2>
+        <p class="qoute">Education is not the learning of facts, but the training of the mind to think.</p>
+        
+        <button class="btn-add"><i class="fas fa-plus"></i> Add Education</button>
+
+        <div class="box-container">
+            <div class="box">
+                <div class="image"><img draggable="false" src="./assets/images/secabs.jpg" alt=""></div>
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h3>Bachelor of Engineering in Computer Science</h3>
+                    <p>Secab Institute of Engineering and Technology</p>
+                    <h4>2019-2023 | Completed</h4>
+                    <div class="resumebtn">
+                        <button class="btn" id="transcriptBtn"><span>Transcript</span> <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image"><img draggable="false" src="./assets/images/educat/school.jpg" alt=""></div>
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h3>Pure Science +2</h3>
+                    <p>Shri Janata Higher Secondary College | NEB</p>
+                    <h4>2016-2018 | Completed</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <h2 class="heading"><i class="fas fa-briefcase"></i> Experience</h2>
+        
+        <button class="btn-add"><i class="fas fa-plus"></i> Add Experience</button>
+
+        <div class="timeline">
+            <div class="container left">
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h2>Self Employed</h2>
+                    <h3>Full Stack Developer</h3>
+                    <p>Oct 2021 - present</p>
+                </div>
+            </div>
+            <div class="container right">
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h2>DevIncept (Top Contributor)</h2>
+                    <h3>DCP 2021 Contributor | Open Source</h3>
+                    <p>July 2021 - October 2021</p>
+                </div>
+            </div>
+            <div class="container left">
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h2>LetsGrowMore Summer of Code</h2>
+                    <h3>LGM-SOC'21 Participant | Open Source</h3>
+                    <p>June 2021 - August 2021</p>
+                </div>
+            </div>
+            <div class="container right">
+                <div class="content">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <h2>Mapstreak Flyseas</h2>
+                    <h3>Web Developer | Internship</h3>
+                    <p>June 2021 - Dec 2021</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Projects Section -->
+    <section class="work" id="work">
+        <h2 class="heading"><i class="fas fa-laptop-code"></i> Projects <span>Made</span></h2>
+        
+        <button class="btn-add"><i class="fas fa-plus"></i> Add Project</button>
+
+        <div id="filters" class="button-group">
+            <button class="btn is-checked" data-filter="*">All Projects</button>
+            <button class="btn" data-filter=".mern">MERN Stack</button>
+            <button class="btn" data-filter=".lamp">LAMP Stack</button>
+            <button class="btn" data-filter=".basicweb">Basic Web</button>
+            <button class="btn" data-filter=".android">Android App</button>
+        </div>
+
+        <!-- HARDCODED PROJECTS FOR HTML PERSISTENCE ON DOWNLOAD -->
+        <div class="box-container" id="projects-container">
+            <!-- Project 1 -->
+            <div class="grid-item android">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/notystackandroid.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>NotyStack Android</h3></div>
+                        <div class="desc">
+                            <p>Fully fledged android CRUD app based on different design patterns.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="grid-item mern">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/instagrammern.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>Instagram MERN</h3></div>
+                        <div class="desc">
+                            <p>Full-Stack Instagram clone built using MERN stack.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="grid-item lamp">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/flipkartphp.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>Flipkart PHP</h3></div>
+                        <div class="desc">
+                            <p>Full-Stack Flipkart Clone Using LAMP Stack.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="grid-item basicweb">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/portfolio1.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>Portfolio Website</h3></div>
+                        <div class="desc">
+                            <p>Personal Portfolio Website.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 5 -->
+            <div class="grid-item android">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/weatherlyandroid.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>Weatherly Android</h3></div>
+                        <div class="desc">
+                            <p>Native android app built using Java, XML and Volley dependencies.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 6 -->
+            <div class="grid-item mern">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/resumegen.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>ResumeGen</h3></div>
+                        <div class="desc">
+                            <p>ReactJS Basic Resume Generator.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 7 -->
+            <div class="grid-item lamp">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/tsfbank.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>PHP Banking Website</h3></div>
+                        <div class="desc">
+                            <p>Basic Banking System based on PHP and MySQL database.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 8 -->
+            <div class="grid-item basicweb">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/jspro.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>JavaScript Projects</h3></div>
+                        <div class="desc">
+                            <p>Showcase of javaScript projects.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 9 -->
+            <div class="grid-item mern">
+                <div class="box tilt">
+                    <div class="admin-actions">
+                        <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <img draggable="false" src="./assets/images/projects/cryptotracker.jpeg" onerror="this.src='./assets/images/projects/1.jpeg'" alt="project" />
+                    <div class="content">
+                        <div class="tag"><h3>Crypto Tracker</h3></div>
+                        <div class="desc">
+                            <p>Crypto Tracker built using ReactJS and Chakra UI.</p>
+                            <div class="btns">
+                                <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
+                                <a href="#" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="heading"><i class="fas fa-headset"></i> Get in <span>Touch</span></h2>
+        <div class="container" style="position: relative;">
+            <div class="admin-actions" style="top: 10px; left: 10px; right: auto;">
+                <button class="btn-edit" title="Edit Image"><i class="fas fa-edit"></i></button>
+            </div>
+            <div class="image-box">
+                <img draggable="false" src="./assets/images/contact1.png" alt="">
+            </div>
+            <form id="contact-form" action="#" method="post">
+                <div class="field">
+                    <i class='fas fa-user'></i>
+                    <input type="text" name="name" placeholder="Name" required>
+                </div>
+                <div class="field">
+                    <i class='fas fa-envelope'></i>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="field">
+                    <i class='fas fa-phone-alt'></i>
+                    <input type="text" name="phone" placeholder="Phone" required>
+                </div>
+                <div class="field">
+                    <textarea placeholder="Message" name="message" required></textarea>
+                </div>
+                <div>
+                    <button type="button">Submit <i class="fa fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="admin-actions" style="top: 10px; right: 10px;">
+            <button class="btn-edit" title="Edit Footer"><i class="fas fa-edit"></i></button>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <h3>Saiyed's Portfolio</h3>
+                <p>Thank you for visiting my personal portfolio website. Connect with me over socials.<br/><br/> Keep Rising 🚀.</p>
+            </div>
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home"><i class="fas fa-chevron-circle-right"></i> home</a>
+                <a href="#about"><i class="fas fa-chevron-circle-right"></i> about</a>
+                <a href="#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
+                <a href="#education"><i class="fas fa-chevron-circle-right"></i> education</a>
+                <a href="#work"><i class="fas fa-chevron-circle-right"></i> work</a>
+            </div>
+            <div class="box">
+                <h3>contact info</h3>
+                <p> <i class="fas fa-phone"></i>+91 8792549215</p>
+                <p> <i class="fas fa-envelope"></i>saiyedkhan207@gmail.com</p>
+                <p> <i class="fas fa-map-marked-alt"></i>Bijapur, Karnataka-586101</p>
+                <div class="share">
+                    <a href="https://www.linkedin.com/in/saiyed-afak-ahmed-256a5a256/" class="fab fa-linkedin" aria-label="LinkedIn" target="_blank"></a>
+                    <a href="https://github.com/saiyed207" class="fab fa-github" aria-label="GitHub" target="_blank"></a>
+                    <a href="https://www.instagram.com/_saiyed_khan_/" class="fab fa-instagram" aria-label="Instagram" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a href="https://www.linkedin.com/in/saiyed-afak-ahmed-256a5a256/"> Saiyed Afak Ahmed</a></h1>
+    </footer>
+
+    <!-- Export Button & Scroll Top -->
+    <button id="download-html-btn" class="download-btn"><i class="fas fa-download"></i> Save & Download Final HTML</button>
+    <a href="#home" aria-label="ScrollTop" class="fas fa-angle-up" id="scroll-top"></a>
+
+    <!-- JavaScript CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js" integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js" integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Navbar Menu Toggle
+            $('#menu').click(function () {
+                $(this).toggleClass('fa-times');
+                $('.navbar').toggleClass('nav-toggle');
+            });
+
+            // Scrollspy & Scroll-to-top button
+            $(window).on('scroll load', function () {
+                $('#menu').removeClass('fa-times');
+                $('.navbar').removeClass('nav-toggle');
+
+                if (window.scrollY > 60) {
+                    $('#scroll-top').addClass('active');
+                    $('header').addClass('sticky');
+                } else {
+                    $('#scroll-top').removeClass('active');
+                    $('header').removeClass('sticky');
+                }
+                
+                $('section').each(function () {
+                    let height = $(this).height();
+                    let offset = $(this).offset().top - 200;
+                    let top = $(window).scrollTop();
+                    let id = $(this).attr('id');
+
+                    if (top >= offset && top < offset + height) {
+                        $('.navbar ul li a').removeClass('active');
+                        $('.navbar').find(`[href="#${id}"]`).addClass('active');
+                    }
+                });
+            });
+
+            // Typed.js Initialization logic
+            let typedElement = $('.typing-text');
+            let typedStrings = typedElement.attr('data-strings').split(',');
+            var typed = new Typed('.typing-text', {
+                strings: typedStrings,
+                loop: true,
+                typeSpeed: 50,
+                backSpeed: 25,
+                backDelay: 500
+            });
+
+            // Isotope for projects filter
+            var $grid = $('.box-container#projects-container').isotope({
+                itemSelector: '.grid-item',
+                layoutMode: 'fitRows',
+                percentPosition: true
+            });
+            $('.button-group').on('click', 'button', function () {
+                $('.button-group').find('.is-checked').removeClass('is-checked');
+                $(this).addClass('is-checked');
+                var filterValue = $(this).attr('data-filter');
+                $grid.isotope({ filter: filterValue });
+            });
+
+            // Vanilla Tilt
+            VanillaTilt.init(document.querySelectorAll(".tilt"), {
+                max: 15,
+                speed: 400
+            });
+
+            // ScrollReveal
+            const srtop = ScrollReveal({
+                origin: 'top',
+                distance: '80px',
+                duration: 1000,
+                reset: true
+            });
+            srtop.reveal('.about .content h3', { delay: 200 });
+            srtop.reveal('.experience .timeline', { delay: 400 });
+            srtop.reveal('.experience .timeline .container', { interval: 400 });
+
+            // Circular progress logic
+            const block = document.querySelectorAll('.block');
+            block.forEach(item => {
+                let numElement = item.querySelector('.num');
+                let num = parseInt(numElement.innerText);
+                let circle = item.querySelector('.circle');
+                if (circle) circle.style.strokeDashoffset = 503 - (503 * (num / 100));
+            });
+
+            // Popups
+            $('#resumeBtn').click(function(e) { if(!$(this).closest('.is-editing').length){ $('#resumePopup').css('display', 'flex'); } });
+            $('#closeBtn').click(function() { $('#resumePopup').css('display', 'none'); });
+            $('#transcriptBtn').click(function(e) { if(!$(this).closest('.is-editing').length){ $('#transcriptPopup').css('display', 'flex'); } });
+            $('#closeBtn1').click(function() { $('#transcriptPopup').css('display', 'none'); });
+            
+            window.onclick = function(event) {
+                if (event.target.className === "popup") {
+                    $('.popup').css('display', 'none');
+                }
+            };
+
+            // ==========================================
+            // CRUD LOGIC: Edit, Delete, Add
+            // ==========================================
+            
+            // Delete
+            $(document).on('click', '.btn-delete', function(e) {
+                e.preventDefault();
+                let target = $(this).closest('.skill, .block, .box, .container, .grid-item');
+                if(confirm("Are you sure you want to delete this item?")) {
+                    let isProject = target.hasClass('grid-item');
+                    target.remove();
+                    if(isProject) $grid.isotope('layout');
+                }
+            });
+
+            // Edit
+            $(document).on('click', '.btn-edit', function(e) {
+                e.preventDefault();
+                let btn = $(this);
+                // Target parent block, section, or popup
+                let target = btn.closest('.skill, .block, .box, .container, .grid-item, .content, .hero-overlay, .footer, .popup-content, .contact .container, .about .image');
+                
+                let isEditing = target.hasClass('is-editing');
+                if (!isEditing) {
+                    target.addClass('is-editing');
+                    btn.html('<i class="fas fa-save"></i>').css('background', '#2ecc71');
+                    
+                    // Make text editable (Exclude icons and specific structural spans)
+                    target.find('h1, h2, h3, h4, h5, p:not(.number), span.tag, .title, span.num, .credit').attr('contenteditable', 'true');
+                    
+                } else {
+                    target.removeClass('is-editing');
+                    btn.html('<i class="fas fa-edit"></i>').css('background', '');
+                    target.find('[contenteditable="true"]').attr('contenteditable', 'false');
+                    if(target.hasClass('grid-item')) $grid.isotope('layout'); 
+                }
+            });
+
+            // EDIT LINKS (Prompt for new URL)
+            $(document).on('click', '.is-editing a', function(e) {
+                e.preventDefault();
+                let newHref = prompt("Enter the new URL for this link:", $(this).attr('href'));
+                if (newHref !== null && newHref.trim() !== "") {
+                    $(this).attr('href', newHref);
+                }
+            });
+
+            // EDIT IMAGES (File Picker -> Base64)
+            $(document).on('click', '.is-editing img', function(e) {
+                e.preventDefault();
+                let img = $(this);
+                let input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.onchange = ev => {
+                    let file = ev.target.files[0];
+                    let reader = new FileReader();
+                    reader.onload = event => {
+                        img.attr('src', event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            });
+
+            // EDIT PDFs (Embed tag in Transcript popup)
+            $(document).on('click', '.is-editing embed', function(e) {
+                e.preventDefault();
+                let embed = $(this);
+                let input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'application/pdf';
+                input.onchange = ev => {
+                    let file = ev.target.files[0];
+                    let reader = new FileReader();
+                    reader.onload = event => {
+                        embed.attr('src', event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            });
+
+            // EDIT PROGRESS BARS
+            $(document).on('click', '.is-editing .progress-line', function() {
+                let newVal = prompt("Enter percentage (0-100):");
+                if(newVal !== null && !isNaN(newVal)) {
+                    $(this).css('--wd', newVal + '%');
+                }
+            });
+
+            // EDIT CIRCULAR PROGRESS
+            $(document).on('click', '.is-editing .box1', function() {
+                 let newVal = prompt("Enter percentage (0-100):");
+                 if(newVal !== null && !isNaN(newVal)) {
+                     $(this).find('.num').text(newVal);
+                     let circle = $(this).siblings('.svg').find('.circle');
+                     if(circle) circle.css('stroke-dashoffset', 503 - (503 * (newVal / 100)));
+                 }
+            });
+
+            // EDIT TYPING TEXT STRINGS
+            $(document).on('click', '.is-editing .typing-text', function() {
+                let current = $(this).attr('data-strings');
+                let newVal = prompt("Enter comma-separated skills (e.g. Designer,Developer):", current);
+                if(newVal !== null) {
+                    $(this).attr('data-strings', newVal);
+                    typed.destroy();
+                    typed = new Typed('.typing-text', {
+                        strings: newVal.split(','), loop: true, typeSpeed: 50, backSpeed: 25, backDelay: 500
+                    });
+                }
+            });
+
+            // Add
+            $(document).on('click', '.btn-add', function(e) {
+                e.preventDefault();
+                let btn = $(this);
+                let section = btn.closest('section');
+                let container, template;
+
+                if (section.attr('id') === 'about') {
+                    container = $('#about-details');
+                    template = container.find('.box').first().clone();
+                    template.html(`
+                        <div class="admin-actions">
+                            <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                            <button class="btn-delete" title="Delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <p><span> new label : </span> new value</p>
+                    `);
+                    container.append(template);
+                }
+                else if (section.attr('id') === 'skills') {
+                    container = section.find('.our-skills');
+                    template = container.find('.skill').first().clone();
+                    template.find('p').text('New Skill');
+                    template.find('.progress-line').css('--wd', '50%');
+                    container.append(template);
+                } 
+                else if (section.attr('id') === 'education') {
+                    container = section.find('.box-container');
+                    template = container.find('.box').first().clone();
+                    template.find('h3').text('New Degree');
+                    template.find('p').text('New Institution');
+                    template.find('h4').text('Year | Completed');
+                    container.append(template);
+                } 
+                else if (section.attr('id') === 'experience') {
+                    container = section.find('.timeline');
+                    template = container.find('.container').first().clone();
+                    let lastClass = container.children('.container').last().hasClass('left') ? 'right' : 'left';
+                    template.removeClass('left right').addClass(lastClass);
+                    template.find('h2').text('New Company');
+                    template.find('h3').text('New Role');
+                    template.find('p').text('Start Date - End Date');
+                    container.append(template);
+                } 
+                else if (section.attr('id') === 'work') {
+                    container = $('#projects-container');
+                    template = container.find('.grid-item').first().clone();
+                    template.find('h3').text('New Project');
+                    template.find('.desc p').text('Short project description goes here.');
+                    container.append(template);
+                    $grid.isotope('appended', template).isotope('layout');
+                }
+            });
+
+            // ==========================================
+            // Download Final Clean HTML Logic
+            // ==========================================
+            $('#download-html-btn').on('click', function() {
+                // Ensure all active edits are saved
+                $('.is-editing').each(function() {
+                    $(this).find('.btn-edit').click(); 
+                });
+
+                // Clone entire DOM natively
+                let clone = document.documentElement.cloneNode(true);
+
+                // Remove all CRUD controls and the download button from the clone
+                let controls = clone.querySelectorAll('.admin-actions, .btn-add, #download-html-btn');
+                controls.forEach(el => el.remove());
+
+                // Strip out remaining contenteditable tags just in case
+                let editables = clone.querySelectorAll('[contenteditable]');
+                editables.forEach(el => el.removeAttribute('contenteditable'));
+                
+                // Clean up Isotope/Tilt inline styles dynamically added by JS so it doesn't break on reload
+                let gridItems = clone.querySelectorAll('.grid-item');
+                gridItems.forEach(el => el.removeAttribute('style'));
+                let tiltItems = clone.querySelectorAll('.tilt');
+                tiltItems.forEach(el => {
+                    el.removeAttribute('style');
+                    if(el.vanillaTilt) el.vanillaTilt.destroy();
+                });
+
+                // Build Final String
+                let finalHtml = '<!DOCTYPE html>\n<html lang="en">\n' + clone.innerHTML + '\n</html>';
+
+                // Trigger Download File
+                let blob = new Blob([finalHtml], { type: 'text/html' });
+                let link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'index.html';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            // ==========================================
+            // Canvas Frame Sequence Scroll Animation
+            // ==========================================
+            const canvas = document.getElementById('animationCanvas');
+            const context = canvas.getContext('2d');
+            const frameCount = 110;
+            const currentFrame = index => (
+                `Man_walking_with_laptop_202608071438_202608072131_frames/ezgif-frame-${index.toString().padStart(3, '0')}.png`
+            );
+
+            const frames = [];
+            const preloadImages = () => {
+                for (let i = 1; i <= frameCount; i++) {
+                    const img = new Image();
+                    img.src = currentFrame(i);
+                    frames.push(img);
+                }
+            };
+            preloadImages();
+
+            const initialImg = new Image();
+            initialImg.src = currentFrame(1);
+            initialImg.onload = function() {
+                canvas.width = initialImg.width;
+                canvas.height = initialImg.height;
+                context.drawImage(initialImg, 0, 0);
+            };
+
+            const updateImage = index => {
+                if(frames[index - 1] && frames[index - 1].complete) {
+                    context.drawImage(frames[index - 1], 0, 0);
+                } else {
+                    const tempImg = new Image();
+                    tempImg.src = currentFrame(index);
+                    tempImg.onload = () => context.drawImage(tempImg, 0, 0);
+                }
+            };
+
+            window.addEventListener('scroll', () => {
+                const heroSection = document.querySelector('.hero-scroll-section');
+                if(!heroSection) return;
+                
+                const sectionTop = heroSection.offsetTop;
+                const sectionHeight = heroSection.offsetHeight;
+                const scrollTop = window.scrollY;
+                
+                const startScroll = sectionTop;
+                const endScroll = sectionTop + sectionHeight - window.innerHeight;
+                
+                let scrollFraction = 0;
+                if (scrollTop > startScroll) {
+                    scrollFraction = (scrollTop - startScroll) / (endScroll - startScroll);
+                }
+                
+                scrollFraction = Math.max(0, Math.min(1, scrollFraction));
+                
+                const frameIndex = Math.min(
+                    frameCount - 1,
+                    Math.ceil(scrollFraction * frameCount)
+                );
+                
+                requestAnimationFrame(() => updateImage(frameIndex + 1));
+            });
+        });
+
+        // Disable Developer Mode Shortcut Keys
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        };
+
+        // Title changes on tab switch
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === "visible") {
+                document.title = "Portfolio | Saiyed Afak Ahmed";
+                $("#favicon").attr("href", "./assets/images/afak.png");
+            } else {
+                document.title = "Come Back To Portfolio";
+            }
+        });
+    </script>
+</body>
+</html>
